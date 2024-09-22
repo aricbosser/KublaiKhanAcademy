@@ -1,3 +1,7 @@
+# Ignore Junk Files for Git
+# Python Git Files to Ignore Lines 4-161
+# Add Additional git ignores after this (thought may be better to create new repo?)
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
