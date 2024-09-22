@@ -1,0 +1,54 @@
+General Git Use
+https://www.youtube.com/watch?v=zr7MpE_Eb6A
+
+Install git
+https://git-scm.com/downloads
+
+Create Project Workspace
+1. Create "Projects" folder for any coding projects under your User (Typically, (C:|[whatever your hardrive is]) -> Your Name / OS User Name)
+
+Command Line into Projects repo folder
+1. Type Command Line into search bar
+2. CD (Change Directory) into your project folder
+    2a. Ex on Windows "cd C:/(MyUser)/Prejects" OR one at time "cd (My User)" then "cd Projects" etc.
+    2b. "dir" in command line on windows lists the subfiles / subdirectories of the folder you are currently within
+
+Clone Git Repo
+Grab the clone URL from github (Under Code tab, click "<> Code" dropdown and copy https git URL)
+In Command Line
+"git clone (copied url)"
+
+Verify Clone Success
+Try editing the readme file with a note and clone the changes
+Here’s the correct sequence to verify your local git clone and push the change you made to the README file:
+
+1. Pull the Latest Changes
+  First, make sure your local repository is up to date with the remote repository:
+  
+  git pull origin <branch-name>
+  
+  Replace <branch-name> with the branch you're working on (likely main, dev, or qa).
+  Example for the dev branch:
+  
+  git pull origin dev
+
+2. Stage the Changes
+  Add the modified README.md file to the staging area:
+  
+  git add README.md
+
+3. Commit the Changes
+  Create a commit with a meaningful message:
+
+  git commit -m "Updated README file with small change"
+
+4. Push the Changes
+Now push the changes to the remote branch:
+
+git push origin <branch-name>
+Example for the dev branch:
+
+git push origin dev
+
+This will upload your changes to the remote GitHub repository.
+You can verify the update by visiting the repository on GitHub.
