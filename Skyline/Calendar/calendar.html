@@ -7,44 +7,89 @@
     <link rel="stylesheet" href="calendar.css">
 </head>
 <body>
-    <h1>Current Date Information</h1>
-    
-    <div class="month_box">
-        <p>Month: <span id="month"></span></p> <!-- Label and value in the same <p> -->
-    </div>
-    
-    <div class="weekday_box">
-        <p>Weekday: <span id="weekday"></span></p> <!-- Label and value in the same <p> -->
-    </div>
-    
-    <div class="date_of_month_box">
-        <p>Date: <span id="date_of_month"></span></p> <!-- Label and value in the same <p> -->
-    </div>
+    <div class="grid-container">
+        <div class="grid-navbar">Navbar</div>
+        <div class="grid-body">
+            <!-- <div class="month_box">
+                <p>Month: <span id="month"></span></p>
+            </div>
+            
+            <div class="weekday_box">
+                <p>Weekday: <span id="weekday"></span></p>
+            </div>
+            
+            <div class="date_of_month_box">
+                <p>Date: <span id="date_of_month"></span></p>
+            </div> -->
 
-    <table style="width: 100%;">
-        <thead>
-            <tr>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th>1st</th>
-                <th>2nd</th>
-                <th>3rd</th>
-                <th>4th</th>
-                <th>5th</th>
-                <th>6th</th>
-                <th>7th</th>
-            </tr>
-        </tbody>
-    </table>
+            <div class="grid-body-container">
+                <div id="calendar-info-container"></div>
+                <div id="calendar-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tues</th>
+                                <th>Wed</th>
+                                <th>Thur</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td> <!-- Empty cell for the first day of the month (assuming it starts on a Monday) -->
+                                <td>1st</td>
+                                <td>2nd</td>
+                                <td>3rd</td>
+                                <td>4th</td>
+                                <td>5th</td>
+                                <td>6th</td>
+                            </tr>
+                            <tr>
+                                <td>7th</td>
+                                <td>8th</td>
+                                <td>9th</td>
+                                <td>10th</td>
+                                <td>11th</td>
+                                <td>12th</td>
+                                <td>13th</td>
+                            </tr>
+                            <tr>
+                                <td>14th</td>
+                                <td>15th</td>
+                                <td>16th</td>
+                                <td>17th</td>
+                                <td>18th</td>
+                                <td>19th</td>
+                                <td>20th</td>
+                            </tr>
+                            <tr>
+                                <td>21st</td>
+                                <td>22nd</td>
+                                <td>23rd</td>
+                                <td>24th</td>
+                                <td>25th</td>
+                                <td>26th</td>
+                                <td>27th</td>
+                            </tr>
+                            <tr>
+                                <td>28th</td>
+                                <td>29th</td>
+                                <td>30th</td>
+                                <td>31st</td>
+                                <td></td> <!-- Empty cell for the rest of the week -->
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="grid-footer">Footer</div>
+    </div>
 
     <script src="get_date.js"></script> <!-- Link to your external JS file -->
 </body>

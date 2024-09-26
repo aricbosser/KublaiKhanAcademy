@@ -1,10 +1,54 @@
-th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 14%;
+html, body {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: 100%; /* Ensure body takes full height */
+    width: 100%; /* Ensure body takes full width */
 }
 
-tbody > tr {
-    height: 100px;
-    width: 14%;
+/* Shell Container for grid elements that spans the entire viewport */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column layout */
+    grid-template-rows: 0.5fr 4fr 0.5fr; /* Three rows with relative sizing */
+    height: 100vh; /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+}
+  
+.grid-container > div {
+    text-align: center;
+    font-size: 30px;
+    outline: 1px solid black; /* Add outline to visualize grid lines */
+}
+
+.grid-navbar, .grid-body, .grid-footer {
+    border-bottom: 1px solid black; /* Proper bottom border syntax */
+}
+
+.grid-body-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100%;
+}
+
+#calendar-container {
+    height: 100%;
+    width: 100%;
+}
+
+/* Calendar Table Styles */
+table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Ensures table columns are equal length */
+}
+
+th, td {
+    border: 1px solid black;
+}
+
+td {
+    text-align: right;
+    vertical-align: bottom;
 }
