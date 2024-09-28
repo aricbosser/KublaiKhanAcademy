@@ -5,6 +5,10 @@ html, body {
     width: 100%; /* Ensure body takes full width */
 }
 
+/* body {
+    background: linear-gradient(to bottom, #305ae4, #6b6bb4);
+} */
+
 /* Shell Container for grid elements that spans the entire viewport */
 
 .grid-container {
@@ -27,28 +31,61 @@ html, body {
 
 .grid-body-container {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 4fr;
     height: 100%;
 }
+
+/* Calendar Container */
 
 #calendar-container {
+    display: grid;
     height: 100%;
     width: 100%;
+    grid-template-columns: auto;
+    grid-template-rows: 0.5fr 4fr;
+    border-left: 1px solid black;
 }
 
-/* Calendar Table Styles */
-table {
-    width: 100%;
+/* Calendar Weekdays */
+
+#calendar-container-weekdays {
+    display: grid;
     height: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Ensures table columns are equal length */
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid black;
 }
 
-th, td {
-    border: 1px solid black;
+#calendar-container-weekdays > div:not(:first-child) {
+    border-left: 1px solid black;
 }
 
-td {
-    text-align: right;
-    vertical-align: bottom;
+#calendar-container-weekdays > div > p {
+    text-align: center;
+}
+
+/* Calendar Weekdays */
+
+#calendar-container-dates {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#calendar-container-dates > div {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+#calendar-container-dates > div:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+#calendar-container-dates > div > div {
+    border-left: 1px solid black;
+}
+
+#calendar-container-dates > div > div > p {
+    text-align: center;
+    height: 100%;
+    width: 100%;
 }
