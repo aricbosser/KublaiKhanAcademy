@@ -5,16 +5,16 @@ html, body {
     width: 100%; /* Ensure body takes full width */
 }
 
-/* body {
+body {
     background: linear-gradient(to bottom, #305ae4, #6b6bb4);
-} */
+}
 
 /* Shell Container for grid elements that spans the entire viewport */
 
 .grid-container {
     display: grid;
     grid-template-columns: 1fr; /* Single column layout */
-    grid-template-rows: 0.5fr 4fr 0.5fr; /* Three rows with relative sizing */
+    grid-template-rows: 10% 80% 10%; /* Three rows with relative sizing */
     height: 100vh; /* Full viewport height */
     width: 100vw;  /* Full viewport width */
 }
@@ -82,10 +82,17 @@ html, body {
 
 #calendar-container-dates > div > div {
     border-left: 1px solid black;
+    padding: 6px 7px;
+}
+
+#calendar-container-dates > div > div:first-child {
+    border-left: none;
 }
 
 #calendar-container-dates > div > div > p {
-    text-align: center;
-    height: 100%;
-    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+    text-align: start;
 }
