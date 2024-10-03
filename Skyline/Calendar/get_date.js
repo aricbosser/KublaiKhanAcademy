@@ -1,90 +1,33 @@
-// const today = new Date();
-const today = new Date(2024, 8, 18)
-
-// Get Month
-const monthOptions = { month: 'long' };
-const month_string = today.toLocaleString('en-US', monthOptions);
-
-// Get Weekday
-const weekdayOptions = { weekday: 'long' };
-const weekday_string = today.toLocaleString('en-US', weekdayOptions);
-
-// Get Day of the Month
-const date_string = today.getDate();
-
-// Calendar is a 5x7 grid, with 0,0 representing the first day of the calendar grid and 
-// 4,4 representing the final day of the calendar. 
-
-// First step is to find where in the grid the first of the month goes.
-// Once the first x,y coord is found, the rest of the calendar can be populated
-
-// the "y" coord is weekday
-// 0 - Sun | 7 - Sat
-
+// Given the current date, returns a JS Date object for the first of the month
 function get_first_date_of_current_month(today) {
-    todays_month = today.getMonth()
-    todays_year = today.getFullYear()
-    return new Date(todays_year, todays_month, 1)
+    return new Date(today.getFullYear(), today.getMonth(), 1)
 }
 
+// Given the first of the month JS Date object, return the x,y coordinates of the first of the month
+// getDay returns an integer 0-6 representing the week day
 function get_first_day_of_current_month_coords(first_of_month) {
-    weekday = first_of_month.getDay()
-    return [weekday, 0]
+    return [first_of_month.getDay(), 0]
 }
 
+// Given the current date, return a JS Date object for the last date of the month
+// JS interprets 0 as the last day of the current month
 function get_last_date_of_current_month(today) {
-    let next_month = new get_following_month(today)
-    let last_date = new Date(next_month - 1)
-    return last_date.getDate()
+    return new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
 }
 
+// Given the last date of the current month, return the x, y coordinates of the last day of the month
 function get_last_date_of_current_month_coords(calendar_grid, last_date, first_day_coordinates) {
-    // Will Always Be in the Last Row
-    let y_coord = calendar_grid.at(-1)[1]
-
-    let x_coord = null
-    let first_day_x_coord = first_day_coordinates[0]
-    switch (last_date) {
-        case 28:
-            x_coord = first_day_x_coord - 1
-        case 29:
-            x_coord = first_day_x_coord
-        case 30:
-            x_coord = first_day_x_coord + 1
-        case 31:
-            x_coord = first_day_x_coord + 2
-    }
-
-    switch (x_coord) {
-        case -1:
-            x_coord = 6
-        case 7:
-            x_coord = 0
-        case 8:
-            x_coord = 1
-    }
-
-    return new Array(x_coord, y_coord)
+    const [first_day_x] = first_day_coordinates;
+    const y_coord = calendar_grid.at(-1)[1];  // Always the last row
+    let x_coord = (first_day_x + (last_date - 1)) % 7;  // Calculate the x coordinate directly
+  
+    return [x_coord, y_coord];
 }
 
-function get_following_month(today) {
-    let todays_month = today.getMonth()
-    let todays_year = today.getFullYear()
-    let next_month = new Date(todays_year, todays_month + 1, 1);
-    return next_month
-}
-
-function set_calendar_grid_array() {
-    let calendar_grid = new Array()
-    for (let y = 0; y < 5; y++) {
-        for (let x = 0; x < 7; x++) {
-            calendar_grid.push([x,y])
-        }
-    }
-
-    return calendar_grid
-}
-
+// Cycle through the calendar grid until the current position is found
+// If the current calendar position is before the first of the month, determine the corresponding date from the previous month
+// If the current calendar position is after the last of the month, determine the corresponding date from the next month
+// Else return the date for the current calendar position
 function get_calendar_date(first_date, last_date, grid_index, first_day_coordinates, last_day_coordinates, x_coord, y_coord) {
     let date = 1
     for (let y = 0; y < 5; y++) {
@@ -116,6 +59,7 @@ function get_calendar_date(first_date, last_date, grid_index, first_day_coordina
     return null
 }
 
+// Build and return a calendar div for an x,y position in the grid
 function get_calendar_date_div(x_coord, y_coord, xy_date, is_previous, is_following) {
     let new_div = document.createElement('div');
     new_div.setAttribute('class', `date-box-[${x_coord}-${y_coord}]`);
@@ -133,6 +77,59 @@ function get_calendar_date_div(x_coord, y_coord, xy_date, is_previous, is_follow
     return new_div
 }
 
+// Given a today's JS Date object, return a new JS Date object of the following month
+function get_following_month(today) {
+    let todays_month = today.getMonth()
+    let todays_year = today.getFullYear()
+    let next_month = new Date(todays_year, todays_month + 1, 1);
+    return next_month
+}
+
+// Returns true if the current x,y grid location is the previous month
+function is_previous_calendar_grid_loc(first_day_x_coord, x_coord, y_coord) {
+    if (y_coord > 0) {
+        return false
+    }
+
+    if ((x_coord - first_day_x_coord) < 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+// Returns true if the current x,y grid location is the next month
+function is_following_calendar_grid_loc(calendar_grid, last_day_x_coord, x_coord, y_coord) {
+    last_row = calendar_grid.at(-1)[1]
+
+    if (y_coord < last_row) {
+        return false
+    }
+
+    if ((last_day_x_coord - x_coord) < 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+// Return the calendar grid array; array of arrays
+// [[0,0], [0,1] ... [x,y]]
+// x === rows | horizontal
+// y === columns | vertical
+function set_calendar_grid_array() {
+    let calendar_grid = new Array()
+    for (let y = 0; y < 5; y++) {
+        for (let x = 0; x < 7; x++) {
+            calendar_grid.push([x,y])
+        }
+    }
+
+    return calendar_grid
+}
+
+
+// Main function - build the html of the calendar grid
 function set_all_calendar_date_divs(today) {
     // set current calendar day div classes
     let calendar_grid = set_calendar_grid_array()
@@ -165,31 +162,28 @@ function set_all_calendar_date_divs(today) {
     }
 }
 
-function is_previous_calendar_grid_loc(first_day_x_coord, x_coord, y_coord) {
-    if (y_coord > 0) {
-        return false
-    }
+// Calendar is a 5x7 grid, with 0,0 representing the first day of the calendar grid and 
+// 4,4 representing the final day of the calendar. 
 
-    if ((x_coord - first_day_x_coord) < 0) {
-        return true
-    } else {
-        return false
-    }
-}
+// First step is to find where in the grid the first of the month goes.
+// Once the first x,y coord is found, the rest of the calendar can be populated
 
-function is_following_calendar_grid_loc(calendar_grid, last_day_x_coord, x_coord, y_coord) {
-    last_row = calendar_grid.at(-1)[1]
+// the "y" coord is weekday
+// 0 - Sun | 7 - Sat
 
-    if (y_coord < last_row) {
-        return false
-    }
+// const today = new Date();
+const today = new Date(2024, 4, 30)
 
-    if ((last_day_x_coord - x_coord) < 0) {
-        return true
-    } else {
-        return false
-    }
-}
+// Get Month
+const monthOptions = { month: 'long' };
+const month_string = today.toLocaleString('en-US', monthOptions);
+
+// Get Weekday
+const weekdayOptions = { weekday: 'long' };
+const weekday_string = today.toLocaleString('en-US', weekdayOptions);
+
+// Get Day of the Month
+const date_string = today.getDate();
 
 console.log(today)
 set_all_calendar_date_divs(today)
