@@ -5,10 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar</title>
     <link rel="stylesheet" href="calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="grid-container">
-        <div class="grid-navbar">Navbar</div>
+
+    <div id="header">
+        <h1>scheduler.io</h1>
+        <div id="header-links">
+            <a href="#">My Account</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+    </div>
+
+    <nav id="navbar">
+        <ul id="navbar-tabs">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Employees</a></li>
+            <li><a href="#">Shifts</a></li>
+            <li><a href="#">Reports</a></li>
+        </ul>
+
+    </nav>
+
         <div class="grid-body">
             <!-- <div class="month_box">
                 <p>Month: <span id="month"></span></p>
@@ -23,9 +42,25 @@
             </div> -->
 
             <div class="grid-body-container">
-                <div id="calendar-info-container"></div>
-                <div id="calendar-container">
+                <aside id="calendar-info-container">
+                    <div id="alerts">
+                        <label>Alerts</label>
+                        <div class="feed" id="alert-feed"></div>
+                    </div>
+                    <div id="message-wall">
+                        <label>Message Wall</label>
+                        <div class="feed" id="message-wall-feed"></div>
+                    </div>
+                </aside>
+                <main id="calendar-container">
                     <table>
+                        <caption id="current-month" style="font-weight: bold;">
+                            January
+                        </caption>
+                        <div id="week-toggles">
+                            <a href="#" id="previous-week"><<</a>
+                            <a href="#" id="next-week">>></a>
+                        </div>
                         <thead>
                             <tr>
                                 <th>Sun</th>
@@ -85,10 +120,16 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </main>
             </div>
         </div>
-        <div class="grid-footer">Footer</div>
+        <div class="grid-footer">
+            <div id="social-links">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            </div>
+            <p>scheduler.io 2024</p>
+        </div>
     </div>
 
     <script src="get_date.js"></script> <!-- Link to your external JS file -->
