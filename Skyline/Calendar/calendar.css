@@ -196,8 +196,9 @@ a:active {
 table {
     width: 100%;
     height: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Ensures table columns are equal length */
+    width: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid black;
 }
 
 th, td {
