@@ -1,3 +1,5 @@
+/* Calendar Page CSS */
+
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -20,37 +22,72 @@ a:active {
 
 }
 
-/* Shell Container for grid elements that spans the entire viewport */
+/* Header CSS */
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr; /* Single column layout */
-    grid-template-rows: 10% 80% 10%; /* Three rows with relative sizing */
-    height: 100vh; /* Full viewport height */
-    width: 100vw;  /* Full viewport width */
+#header {
+    position: fixed;
+    display: block;
+    width: 100vw;
+    border-bottom: 5px solid rgb(255, 214, 161);
+    background-color: antiquewhite;
 }
-.grid-container > div {
-    text-align: center;
-    font-size: 30px;
-    outline: 1px solid black; /* Add outline to visualize grid lines */
-} 
+
+#header > h1 {
+    display: inline;
+    padding-left: 10px;
+    padding-top: 0px;
+    color: rgb(255, 173, 65);
+}
+
+#header-links {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    list-style-type: none;
+    display: inline;
+}
+
+/* Navbar CSS */
+
+#navbar {
+    display: block;
+    position: absolute;
+    top: 40px;
+    height: 50px;
+    width: 100vw;
+}
+
+#navbar  a {
+    color: rgb(255, 173, 65);
+    font-weight: normal;
+}
+
+#navbar-tabs {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    list-style-type: none;
+    padding: 0;
+}
+
+#navbar-tabs > li {
+    font-weight: bold;
+    display: inline;
+    padding: 3px;
+}
+
+/* Grid Body Container CSS AKA The Alerts and Calendar Globals - Maybe Rename to something else more clear? */
 
 .grid-body {
     display: block;
     position: absolute;
-    height: 500px;
+    /* height: 500px; */
+    height: 80%;
+    width: 100%;
     top: 93.5px; /* Proper bottom border syntax */
-}
-
-.grid-footer {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 600px;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
-    padding-top: 7px;
 }
 
 .grid-body-container {
@@ -61,6 +98,8 @@ a:active {
     width: 100%;
     height: 100%;
 }
+
+/* Info Container  CSS*/
 
 #calendar-info-container {
     display: flex;
@@ -106,6 +145,22 @@ a:active {
     height: 100px;
 }
 
+/* Calendar CSS */
+
+#current-month {
+    padding: 10px;
+    background-color: rgb(255, 214, 161);
+}
+
+#week-toggles {
+    font-size: 10px;
+    text-decoration: underline;
+    position: absolute;
+    display: block;
+    right: 25px;
+    top: 15px;
+}
+
 #calendar-container {
     display: flex;
     flex-direction: column;
@@ -118,101 +173,41 @@ a:active {
     margin: 10px;
 }
 
-#header {
-    position: fixed;
-    display: block;
-    width: 100vw;
-    border-bottom: 5px solid rgb(255, 214, 161);
-    background-color: antiquewhite;
+#calendar-container-dates {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    height: 100%;
+    width: 100%;
 }
 
-#header > h1 {
-    display: inline;
-    padding-left: 10px;
-    padding-top: 0px;
-    color: rgb(255, 173, 65);
+#calendar-container-dates > div {
+    border-bottom: 5px solid rgb(255, 214, 161);;
 }
 
-#header-links {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    list-style-type: none;
-    display: inline;
-}
-
-#navbar {
-    display: block;
-    position: absolute;
-    top: 40px;
-    height: 50px;
-    width: 100vw;
-}
-
-#navbar  a {
-    color: rgb(255, 173, 65);
-    font-weight: normal;
-}
-
-#navbar-tabs {
-    position: absolute;
+#calendar-container-dates > div > p {
     margin: 0;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    list-style-type: none;
-    padding: 0;
-}
-
-#navbar-tabs > li {
-    font-weight: bold;
-    display: inline;
     padding: 3px;
+    height: auto;
+    width: auto;
+    text-align: start;
 }
 
-#week-toggles {
-    font-size: 10px;
-    text-decoration: underline;
+/* Footer CSS */
+
+.grid-footer {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    display: block;
-    right: 25px;
-    top: 15px;
-}
-
-#current-month {
-    padding: 10px;
-    background-color: rgb(255, 214, 161);
+    bottom: 20px;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7px;
 }
 
 .grid-footer p {
     font-size: 10px;
     color: grey;
     margin: 0px;
-}
-
-
-/* Calendar Table Styles */
-table {
-    width: 100%;
-    height: 100%;
-    width: 100%;
-    grid-template-columns: repeat(7, 1fr);
-    border-bottom: 1px solid black;
-}
-
-th, td {
-    border: 1px solid rgb(255, 173, 65);
-}
-
-th {
-    background-color: antiquewhite;
-}
-
-td {
-    text-align: left;
-    vertical-align: top;
-    font-size: 10px;
-    padding-left: 3px;
-    padding-top: 3px;
 }

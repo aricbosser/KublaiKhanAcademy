@@ -148,9 +148,12 @@ function set_all_calendar_date_divs(today) {
         let is_previous = is_previous_calendar_grid_loc(first_day_coordinates[0], x_coord, y_coord)
         let is_following = is_following_calendar_grid_loc(calendar_grid, last_day_coordinates[0], x_coord, y_coord)
 
-        let week_row_div = document.querySelector(`.week-row-${y_coord}`)
+        // let week_row_div = document.querySelector(`.week-row-${y_coord}`)
+        let week_row_div = document.querySelector(`#calendar-container-dates`)
         let xy_date = get_calendar_date(first_date, last_date, i, first_day_coordinates, last_day_coordinates, x_coord, y_coord)
         let calendar_date_div = new get_calendar_date_div(x_coord, y_coord, xy_date, is_previous, is_following)
+        console.log(calendar_date_div)
+        console.log(week_row_div)
 
         if (is_previous) {
             week_row_div.appendChild(calendar_date_div)
@@ -172,7 +175,7 @@ function set_all_calendar_date_divs(today) {
 // 0 - Sun | 7 - Sat
 
 // const today = new Date();
-const today = new Date(2024, 4, 30)
+const today = new Date()
 
 // Get Month
 const monthOptions = { month: 'long' };
@@ -189,6 +192,4 @@ console.log(today)
 set_all_calendar_date_divs(today)
 
 // Display Data
-document.getElementById('month').innerText = month_string; // Append month name
-document.getElementById('weekday').innerText = weekday_string; // Append weekday name
-document.getElementById('date_of_month').innerText = date_string; // Append day of the month
+document.getElementById('month').innerText = `${date_string} ${month_string} ${weekday_string}`; // Append month name
