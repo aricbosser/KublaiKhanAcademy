@@ -16,11 +16,13 @@ const serveStaticFile = (res, filePath, contentType) => {
 };
 
 http.createServer((req, res) => {
+    console.log(`Request URL: ${req.url}`)
+
     // Handle requests for static files
     if (req.url === '/') {
         serveStaticFile(res, 'calendar.html', 'text/html'); // Serve HTML file
-    } else if (req.url === '/get_date.js') {
-        serveStaticFile(res, 'get_date.js', 'application/javascript'); // Serve JS file
+    } else if (req.url === '/generate_calendar.js') {
+        serveStaticFile(res, 'generate_calendar.js', 'application/javascript'); // Serve JS file
     } else if (req.url === '/calendar.css') { // Example for CSS (if needed)
         serveStaticFile(res, 'calendar.css', 'text/css'); // Serve CSS file
     } else {
