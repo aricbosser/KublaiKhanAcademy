@@ -23,6 +23,8 @@ http.createServer((req, res) => {
         serveStaticFile(res, 'calendar.html', 'text/html'); // Serve HTML file
     } else if (req.url === '/generate_calendar.js') {
         serveStaticFile(res, 'generate_calendar.js', 'application/javascript'); // Serve JS file
+    } else if (req.url === '/get_calendar_header.js') {
+        serveStaticFile(res, 'get_calendar_header.js', 'application/javascript')
     } else if (req.url === '/calendar.css') { // Example for CSS (if needed)
         serveStaticFile(res, 'calendar.css', 'text/css'); // Serve CSS file
     } else {
