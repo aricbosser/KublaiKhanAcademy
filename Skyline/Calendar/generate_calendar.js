@@ -31,9 +31,15 @@ function get_calendar_date_div(today, x_coord, y_coord, xy_date, is_previous, is
 
     let new_paragraph = document.createElement('p');
     if (is_previous) {
+        new_div.classList.add('date-box-previous')
+    } 
+    
+    if (is_following) {
+        new_div.classList.add('date-box-following')
+    }
 
-    } else if (is_following) {
-
+    if (today.getDate() === xy_date) {
+        new_div.classList.add('date-box-current')
     }
 
     new_paragraph.textContent = xy_date;
